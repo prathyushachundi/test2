@@ -1,0 +1,42 @@
+div#rightside-toolbar {
+    
+    padding: 0px;
+    
+}
+div#rightside-toolbar ul {
+    width: 46%;
+    margin: 0px !important;
+    display: table;
+    padding: 0px;
+    float: right;
+    background: #E3E3E3;
+    min-height: 730px;
+    list-style: none;
+    text-align: center;
+    margin: auto;
+}
+div#rightside-toolbar ul li{
+    margin: 38px 0px;
+    color: #202124;
+}
+
+.icon-text {
+    font-size: 10px;
+    color: #323639;
+    /* line-height: 0.5; */
+  }
+  div#rightside-toolbar ul li span {
+    display: table;
+    text-align: center;
+    width: 100%;
+}
+img.rightside-toolbar-icon {
+    width: 16px;
+    cursor: pointer;
+}
+.col-md-12.main-container {
+    margin-top: -21px;
+}
+div#rightside-toolbar {
+    margin-top: 7px;
+}

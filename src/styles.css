@@ -1,0 +1,119 @@
+@import 'assets/css/pdf_viewer.css';
+@import 'assets/css/print.css';
+
+body {
+  background: #333;
+}
+.content-container {
+  background-color: #fff;
+}
+
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh;  
+  display: flex;
+  align-items: center;
+}
+
+/* Override these styles from pdf_viewer.css  */
+.pdfViewer .canvasWrapper {
+  box-shadow: 0 0 3px #bbb;
+}
+.pdfViewer .page {
+  margin-bottom: 10px;
+}
+
+.pdfViewer .page {
+  border-image: none;
+}
+
+/* Superimpose annotation layer above the pdf page */
+.annotationLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.color {
+  display: inline-block;
+  width: 18px;
+  height: 5px;
+  border: 1px solid #000;
+  vertical-align: middle;
+}
+.color-selected {
+  border: 3px solid #666;
+  width: 30px;
+  height: 30px;
+  margin-top: -1px;
+  margin-left: -2px;
+  margin-right: -2px;
+}
+.color-picker {
+  z-index: 100;
+}
+
+.modal-backdrop{ 
+  background-color: #00000040;
+  position:fixed;  
+  top:0;  
+  left:0;  
+  width:100%;  
+  height:100vh;  
+}
+
+/* Comment Box */
+#comment-wrapper {
+  position: relative;  
+  left: -3px;
+  top: 36px;
+  overflow: auto;
+  width: 25vh;
+  height: 15vh;
+}
+
+#comment-wrapper h4 {
+  margin: 10px;
+}
+
+#comment-wrapper .comment-list {
+  font-size: 12px;
+}
+
+#comment-wrapper .comment-list-item {
+  padding: 10px;
+}
+
+.comment-list-form {
+  position: relative;
+  bottom: -5px;
+}
+
+#comment-wrapper .comment-list-form input {
+  padding: 5px;
+  width: 20vh;
+}
+.color-picker a {
+  height: 20px;
+  width: 20px;
+}
+.color-picker {
+  left: -41px;
+  width: 102px !important;
+}
+.color-picker:before {
+  position: absolute;
+  content: '';
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #fff;
+  top: -6px;
+  left: 44px;
+}

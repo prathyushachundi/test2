@@ -1,0 +1,30 @@
+<div class="panel panel-green comment-box" id="comment-box" *ngIf="docLevelAnnotation" [class.comment-box-wide]="!collapseComment">
+  <div class="panel-heading" (click)="collapseComment = !collapseComment">
+    <h3>
+      <i [class]="collapseComment? 'fas fa-caret-right': 'fas fa-caret-down'"></i>
+      Comments <span *ngIf="collapseComment && docLevelAnnotation.comments.length > 0">({{docLevelAnnotation.comments.length}})</span>
+    </h3>
+  </div>
+  <div class="panel-body" *ngIf="!collapseComment">
+    <ul class="list-unstyled comment-list">
+      <li *ngFor="let comment of docLevelAnnotation.comments">
+        <span>
+        <i class="fas fa-user"></i> <span class="user-id">{{comment.userId}}</span>
+        </span>
+        <small class="date pull-right">{{comment.createDate | date:'short'}}</small>
+        <br>
+        {{ comment.commentText }}
+      </li>
+    </ul>
+    <div class="row">
+      <div class="col-md-12">
+        <textarea [(ngModel)]="inputComment" class="form-control input-sm" maxlength="500"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button class="btn btn-sm btn-success pull-right add-comment" (click)="addComment()">Add</button>
+      </div>
+    </div>
+  </div>
+</div>

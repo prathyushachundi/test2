@@ -1,0 +1,335 @@
+<nav class="navbar navbar-default toolbar" id="toolbar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div class="row nopadding">
+                <a class="navbar-brand" href="javascript://">
+                    <span class="app-name">Imaging</span>
+                    
+                </a>
+                <span class="doc-title">{{fileName}}</span>
+                <span class="file-name" title="{{sessionService.selectedFile.fileName}}" *ngIf="sessionService.selectedFile">
+                        {{sessionService.selectedFile.fileName | lengthRestrict:25 }}</span>
+            </div>
+            <div class="row nopadding">
+               
+            </div>
+        </div>
+        <ul class="nav navbar-nav tool-bar-list">
+            <!--<li>
+                <button class="btn btn-default toolbar-btn navbar-btn cursor" type="button" title="Cursor" data-tooltype="cursor" 
+                    (click)="sendEvent('cursor')" [class.active]="eventType == 'cursor'">
+                    <img src="imaging/assets/icons/SelectIcon.svg" class="toolbar-icon-images">
+                </button>
+                <span class="icon-text">Select</span>
+            </li>-->
+
+            
+
+            <li class="rectangle-parent">
+                <button class="btn btn-default toolbar-btn navbar-btn rectangle" type="button" title="Cursor" data-tooltype="cursor" 
+                (click)="sendEvent('cursor')" [class.active]="eventType == 'cursor'" >
+                <li *ngIf="eventType == 'cursor';then selected else nonselected"></li>
+                <ng-template #nonselected><img  src="imaging/assets/icons/SelectIcon.svg" class="toolbar-icon-images"></ng-template>
+                <ng-template #selected><img  src="imaging/assets/icons/SelectIcon-selected.svg" class="toolbar-icon-images"></ng-template>
+                    <span class="icon-text">Select</span>
+                    
+                </button>
+                
+            </li>
+
+            <li class="rectangle-parent ">
+                    <button class="btn btn-default toolbar-btn navbar-btn rectangle" type="button" title="Circle" data-tooltype="emptycircle"
+                    (click)="sendEvent('emptycircle')" [class.active]="eventType == 'emptycircle'">
+                        <img src="imaging/assets/icons/circle.svg" class="toolbar-icon-images">
+                        <span class="icon-text">Circle</span>
+                    </button>
+            </li>
+
+            <li class="rectangle-parent strikeout">
+                    <button class="btn btn-default toolbar-btn navbar-btn rectangle" type="button" title="Strikeout" data-tooltype="strikeout"
+                    (click)="sendEvent('strikeout')" [class.active]="eventType == 'strikeout'">
+                        <img [src]="striketool ? striketool:'imaging/assets/icons/strikethrough.svg'" class="toolbar-icon-images">
+                        <span class="icon-text">Strikeout</span>
+                    </button>
+                </li>
+
+            <li class="rectangle-parent">
+                    <button class="btn btn-default toolbar-btn navbar-btn rectangle" type="button" title="Rectangle" data-tooltype="area"
+                        (click)="sendEvent('area')" [class.active]="eventType == 'area'">
+                        <img src="imaging/assets/icons/square.svg" class="toolbar-icon-images">
+                        <span class="icon-text">Rectangle</span>
+                    </button>
+                </li>
+                
+                <li class="rectangle-parent pen-tool">
+                        <button class="btn btn-default toolbar-btn navbar-btn rectangle" type="button" title="Highlight" data-tooltype="highlight"
+                        (click)="sendEvent('highlight')" [class.active]="eventType == 'highlight'">
+                            <img src="imaging/assets/icons/highlight.svg" class="toolbar-icon-images">
+                        </button>
+                        <div #penColorId class="colorcode"></div>
+                            <span class="icon-text">Highlight</span>
+                        
+                    </li>
+                    <li class="rectangle-parent zoom-sty with-size-box">
+                            <button class="btn btn-default toolbar-btn navbar-btn rectangle" type="button" title="Text Tool" data-tooltype="text"
+                            (click)="sendEvent('text')" [class.active]="eventType == 'text'">
+                                <img src="imaging/assets/icons/Rotate.svg" class="toolbar-icon-images">
+                                <span class="icon-text text-text">Rotate</span>
+                            </button>
+                            
+                                
+                            
+                        </li>
+                        <li class="text-size-parent box-contorol">
+                                <select #textSizeId class="text-size form-control navbar-btn" (change)="updateTextSize()">
+                                        <option *ngFor="let textSize of textSizes" [value]="textSize">{{textSize}}</option>
+                                </select>
+                        </li>
+                    <li class="rectangle-parent pen-tool with-size-box">
+                            <button class="btn btn-default toolbar-btn navbar-btn rectangle" type="button" title="Text Tool" data-tooltype="text"
+                            (click)="sendEvent('text')" [class.active]="eventType == 'text'">
+                                <img src="imaging/assets/icons/text.svg" class="toolbar-icon-images">
+                            </button>
+                            <div #textColorId class="colorcode"></div>
+                                <span class="icon-text text-text">Text</span>
+                            
+                        </li>
+                        <li class="text-size-parent box-contorol">
+                                <select #textSizeId class="text-size form-control navbar-btn" (change)="updateTextSize()">
+                                        <option *ngFor="let textSize of textSizes" [value]="textSize">{{textSize}}</option>
+                                </select>
+                        </li>
+                        <li class="rectangle-parent pen-tool with-size-box">
+                                <button class="btn btn-default toolbar-btn navbar-btn rectangle" ype="button" title="Pen Tool" data-tooltype="draw"
+                                (click)="sendEvent('draw')" [class.active]="eventType == 'draw'">
+                                    <img src="imaging/assets/icons/pen.svg" class="toolbar-icon-images">
+                                </button>
+                                <div #textColorId class="colorcode"></div>
+                                    <span class="icon-text text-text">Pen</span>
+                                
+                            </li>
+                            <li class="text-size-parent box-contorol">
+                                    <select #penSizeId class="pen-size form-control navbar-btn" (change)="updatePenSize()" [(ngModel)]="selectedPenSize">
+                                            <option *ngFor="let penSize of penSizes" [value]="penSize">{{penSize}}</option>
+                                        </select>
+                            </li>
+                            <li class="rectangle-parent pen-tool with-size-box">
+                                    <button class="btn btn-default toolbar-btn navbar-btn rectangle"  type="button" title="Arrow Tool" data-tooltype="arrow"
+                                                        (click)="sendEvent('arrow')" [class.active]="eventType == 'arrow'">
+                                        <img src="imaging/assets/icons/leftarrow.svg" class="toolbar-icon-images">
+                                    </button>
+                                    <div  #arrowColorId class="colorcode"></div>
+                                        <span class="icon-text text-text">Arrow</span>
+                                    
+                                </li>
+                                <li class="text-size-parent box-contorol arrow-size">
+                                          <select #arrowSizeId class="arrow-size form-control navbar-btn" (change)="updateArrowSize()">
+                                                                    <option *ngFor="let arrowSize of arrowSizes" [value]="arrowSize">{{arrowSize}}</option>
+                                        </select>
+                                </li>
+                                <li class="rectangle-parent pen-tool with-size-box">
+                                        <button class="btn btn-default toolbar-btn navbar-btn rectangle" type="button" title="Text Tool" data-tooltype="text"
+                                        (click)="zoom('out')">
+                                            <img src="imaging/assets/icons/zoom_search.svg" class="toolbar-icon-images">
+                                        </button>
+                                        <div #textColorId class="colorcode"></div>
+                                            <span class="icon-text text-text">Zoom</span>
+                                        
+                                    </li>
+                                    <li class="text-size-parent box-contorol  arrow-size">
+                                             <select #scaleId class="scale form-control navbar-btn" (change)="sendEvent('scale')">
+                                                                        <option value=".5">50%</option>
+                                                                        <option value=".75">75%</option>
+                                                                        <option value="1">100%</option>
+                                                                        <option value="1.33" selected>133%</option>
+                                                                        <option value="1.5">150%</option>
+                                                                        <option value="1.75">175%</option>
+                                                                        <option value="2">200%</option>
+                                                                    </select>
+                                                    
+                                    </li>
+                
+            <!-- <li class="circle-parent">
+                    <button class="btn btn-default toolbar-btn navbar-btn circle" type="button" title="Circle" data-tooltype="emptycircle"
+                        (click)="sendEvent('emptycircle')" [class.active]="eventType == 'emptycircle'">
+                        <img src="imaging/assets/icons/square.svg" class="toolbar-icon-images"> 
+                        <span class="icon-text">Circle</span>
+                    </button>
+                  </li>
+            <li class="rotate-ccw-parent">
+                <a href="javascript://" class="rotate-ccw" title="Rotate Counter Clockwise" (click)="sendEvent('rotate-ccw')">
+                    <i class="fas fa-undo fa-lg icon-style"></i>
+                </a>
+                <span class="icon-text">Rotate Left</span></li>
+            <li class="rotate-cw-parent">
+                <a href="javascript://" class="rotate-cw" title="Rotate Clockwise" (click)="sendEvent('rotate-cw')">
+                    <i class="fas fa-redo fa-lg icon-style"></i></a>
+                <span class="icon-text">Rotate Right</span></li>
+            <li> 
+                <div class="divider-vertical"></div>
+            </li>
+            <li class="highlight-parent">
+                <button class="btn btn-default toolbar-btn navbar-btn highlight" type="button" title="Highlight" data-tooltype="highlight"
+                    (click)="sendEvent('highlight')" [class.active]="eventType == 'highlight'">
+                    <img src="imaging/assets/icons/square.svg" class="toolbar-icon-images"> 
+                    <span class="icon-text">Highlight</span>
+                </button>
+               
+            </li>
+            <li class="strikeout-parent">
+                <button class="btn btn-default toolbar-btn navbar-btn strikeout icon-style" type="button" title="Strikeout" data-tooltype="strikeout"
+                    (click)="sendEvent('strikeout')" [class.active]="eventType == 'strikeout'">
+                    <img src="imaging/assets/icons/square.svg" class="toolbar-icon-images">   
+                    <span class="icon-text">Strikeout</span>
+                </button>
+                </li>
+
+            <li>
+                <div class="divider-vertical"></div>
+            </li>
+
+            <li class="text-parent">
+                <button class="btn btn-default toolbar-btn navbar-btn text icon-style" type="button" title="Text Tool" data-tooltype="text"
+                    (click)="sendEvent('text')" [class.active]="eventType == 'text'">
+                    <img src="imaging/assets/icons/square.svg" class="toolbar-icon-images">   
+                    
+                </button>
+                    <div #textColorId class="text-color navbar-btn"></div>
+                <span class="icon-text">Text</span></li>
+            <li class="text-size-parent box-contorol">
+                <select #textSizeId class="text-size form-control navbar-btn" (change)="updateTextSize()">
+                        <option *ngFor="let textSize of textSizes" [value]="textSize">{{textSize}}</option>
+                </select>
+                <!--<span class="icon-text">Size</span></li>-->
+            <!--<li class="box-contorol">
+                <div #textColorId class="text-color navbar-btn"></div>
+                <!--<span class="icon-text">Color</span>-->
+            <!--</li>
+
+            <li>
+                <div class="divider-vertical"></div>
+            </li>
+
+            <li class="pen-parent    ">
+                <button class="btn btn-default toolbar-btn navbar-btn pen" type="button" title="Pen Tool" data-tooltype="draw"
+                    (click)="sendEvent('draw')" [class.active]="eventType == 'draw'">
+                    <i class="fas fa-pen fa-lg icon-style"></i></button>
+                    
+                <span class="icon-text">Pen</span></li>
+            <li class="pen-size-parent box-contorol">
+                <select #penSizeId class="pen-size form-control navbar-btn" (change)="updatePenSize()" [(ngModel)]="selectedPenSize">
+                    <option *ngFor="let penSize of penSizes" [value]="penSize">{{penSize}}</option>
+                </select>
+                <!--<span class="icon-text">Size</span></li>-->
+            <!-- <li class="box-contorol">
+                <div #penColorId class="pen-color navbar-btn"></div>
+                <!--<span class="icon-text">Color</span>
+            </li> 
+
+            <li>
+                <div class="divider-vertical"></div>
+            </li>
+
+            <li class="arrow-parent">
+                <button class="btn btn-default toolbar-btn navbar-btn arrow" type="button" title="Arrow Tool" data-tooltype="arrow"
+                    (click)="sendEvent('arrow')" [class.active]="eventType == 'arrow'">
+                    <i class="fas fa-arrow-right fa-lg icon-style"></i></button>
+                    <div #arrowColorId class="arrow-color navbar-btn"></div>
+                <span class="icon-text">Arrow</span></li>
+            <li class="arrow-size-parent box-contorol">
+                <select #arrowSizeId class="arrow-size form-control navbar-btn" (change)="updateArrowSize()">
+                    <option *ngFor="let arrowSize of arrowSizes" [value]="arrowSize">{{arrowSize}}</option>
+                </select>
+                <!--<span class="icon-text">Thickness</span></li>-->
+            <!-- <li class="box-contorol">
+                <div #arrowColorId class="arrow-color navbar-btn"></div>
+                <!--<span class="icon-text">Color</span>
+            </li> -->
+
+            <li>
+                <div class="divider-vertical"></div>
+            </li>
+    
+            <!--<li class="comment-parent">-->
+                <!--<button class="btn btn-default toolbar-btn navbar-btn comment" type="button" title="Comment" data-tooltype="point"-->
+                    <!--(click)="sendEvent('point')" [class.active]="eventType == 'comment'">-->
+                    <!--<i class="fas fa-comment fa-lg"></i></button>-->
+                <!--<span class="icon-text">Comment</span></li>
+
+            <li class="zoom-parent box-contorol">
+                <a href="javascript://" (click)="zoom('out')">
+                    <i class="fas fa-search-minus fa-lg icon-style"></i></a>
+                <span class="icon-text zoomtext">zoom</span>
+            
+            </li >
+            <li class="scale-parent zoom-parent  box-contorol">                
+                <select #scaleId class="scale form-control navbar-btn" (change)="sendEvent('scale')">
+                    <option value=".5">50%</option>
+                    <option value=".75">75%</option>
+                    <option value="1">100%</option>
+                    <option value="1.33" selected>133%</option>
+                    <option value="1.5">150%</option>
+                    <option value="1.75">175%</option>
+                    <option value="2">200%</option>
+                </select>
+                <!--<span class="icon-text">Scale</span>
+            </li>-->
+            <!-- <li class="zoom-parent  box-contorol">
+                    <a href="javascript://" (click)="zoom('in')"><i class="fas fa-search-plus fa-lg icon-style"></i></a>
+            </li> -->
+         
+
+            <!--<li class="clear-parent">
+                <a href="javascript://" class="clear" (click)="modalDisplay = 'flex'" title="Clear">
+                    <i class="fas fa-times fa-lg icon-style"></i></a>
+                <span class="icon-text">Clear</span></li>
+
+            <li>
+                <div class="divider-vertical"></div>
+            </li>
+
+            <li class="print-parent">
+                <div class="dropdown">
+                    <button class="btn btn-default toolbar-btn dropdown-toggle print" type="button" id="print-menu" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="true">
+                        <i class="fas fa-print fa-lg icon-style"></i>
+                        <!-- <span class="caret"></span> -->
+                    <!--</button>
+                    <span class="icon-text">Print</span>
+                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="print-menu">
+                        <li><a href="javascript://" (click)="printService.print(false)">Without Annotations</a></li>
+                        <li><a href="javascript://" (click)="printService.print(true)">With Annotations</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li>
+                <div class="divider-vertical"></div>
+            </li>
+
+            <li class="save-parent">
+                <a href="javascript://" class="save" title="Save" (click)="!sessionService.selectedFile? '' : sendEvent('save')">
+                    <i class="fas fa-save fa-lg icon-style"></i></a>
+                <span class="icon-text">Save</span>
+            </li> -->
+        </ul>
+    </div>
+</nav>
+
+<div class="modal-backdrop" [ngStyle]="{'display': modalDisplay}"></div>
+<div class="modal vertical-center" tabindex="-1" role="dialog"  [ngStyle]="{'display': modalDisplay}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" aria-label="Close" (click)="modalCancel()"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Are you sure you want to clear annotations added/edited since last save?</h4>        
+      </div>
+      <div class="modal-footer">
+        <div class="row ng-scope text-center">
+            <button class="btn btn-success" type="button" (click)="modalOk()">OK</button>
+            <button class="btn btn-default" type="button" (click)="modalCancel()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

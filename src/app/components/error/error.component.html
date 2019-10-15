@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="request-access-box">
+    <div class="row vertical-center">
+      <div class="col-md-8 col-md-offset-2">
+
+        <div id="request-access-wrapper">
+          <div id="request-access-left-side">
+            <img src="content/images/senate_logo_footer.png" alt="US Senate Financial Management Information System">
+          </div>
+
+          <div id="border">
+            <div id="line" class="one"></div>
+          </div>
+
+          <div id="request-access-right-side" class="vertical-center">
+            <div class="row col-md-12">
+              <div class="request-access-padding">
+                <h3>Error</h3>
+                <div *ngIf="!sessionService.errorPageMessage">
+                  Something went wrong. Please try again later.                  
+                </div>
+                <div *ngIf="sessionService.errorPageMessage">
+                  {{ sessionService.errorPageMessage }}
+                </div>
+                <div>
+                  <br><br>
+                  <div class=text-right>
+                    <button type="button" class="btn btn-primary pull-right request-access-form-button request-access-btn-color request-access-close">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

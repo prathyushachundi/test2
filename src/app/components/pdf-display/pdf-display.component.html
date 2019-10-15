@@ -1,0 +1,52 @@
+<div class="row" #pdfDisplayContainer>
+    <div class="col-md-12">
+        <div id="content-wrapper"
+             (scroll)="pdfScrollSubject.next($event)" (keydown)="onPdfKeyPress($event)" tabindex="0">
+            <app-messages></app-messages>
+            <div class="alert center-block intro" role="alert" [style.display]="selectedFile? 'none' : 'block'">
+                    <img src="imaging/assets/icons/undraw_no_data_qbuo.svg" class="drop-file">
+                <h2 class="img-text">Imaging is currently empty</h2>
+                <h4 class="img-text2">Drag files here to upload or click here to browse files from your computer</h4>
+            </div>
+            <ngx-spinner 
+                bdColor="rgba(51,51,51,0)" 
+                size="default" 
+                color="#555" 
+                type="ball-clip-rotate">
+            </ngx-spinner>
+            <div id="viewer" class="pdfViewer" #pdfViewer>
+            </div>
+        </div>
+    </div>
+<div class="chat-box">
+    <div class="chat-head">
+            <div class="user-name-com">
+                    jack grooms
+                
+                    <span class="com-icn"> <img src="imaging/assets/icons/comment.svg" class="rightside-toolbar-icon"></span>
+                    <span class="com-coun">3</span>
+                </div>
+                <div class="user-name-opt" (click)="chatboxminmize()">
+                        <img src="imaging/assets/icons/downcollapse.svg" class="rightside-toolbar-icon" > 
+                </div>
+    </div>
+    <div class="chat-body" *ngIf="chatboxshow"> 
+     <div class="rec-mes" *ngFor="let commentlistvalue of commentlist">
+        <div class="mes">{{commentlistvalue.name}}</div>
+        <div class="avatar"></div>
+     </div>   
+     <!--<div class="sent-mes">
+            <div class="mes">how are u?</div>
+            <div class="avatar"></div>
+         </div>  -->
+      
+    </div>
+    <div class="chat-fot" *ngIf="chatboxshow">
+
+     <input type="text"  class="type-mes" placeholder="place your message" (keyup.enter)="addcomment()" > 
+     <span class="attacment-icn"><img src="imaging/assets/icons/attachimage.svg" class="rightside-toolbar-icon" (click)="addcomment()"></span>
+     <span class="attacment-icn"><img src="imaging/assets/icons/attach.svg" class="rightside-toolbar-icon"></span>
+    </div>
+
+</div>
+</div>

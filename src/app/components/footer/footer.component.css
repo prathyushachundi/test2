@@ -1,0 +1,25 @@
+.footer {
+    color: #eee;
+    background-color: #333;
+}
+
+.bottom_ul {
+    list-style-type: none;
+    float: right;
+    margin-bottom: 0;
+}
+
+.bottom_ul li {
+    float: left;
+    padding-top: 5px;
+}
+
+.bottom_ul li, .footer p {
+    padding-top: 9px;
+}
+
+.bottom_ul li a {
+    color: #FFF;
+    font-size: 12px;
+    padding-right: 5px;
+}

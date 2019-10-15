@@ -1,0 +1,53 @@
+<div id="wrapper" class="container-fluid">
+  <app-topbar></app-topbar>
+  <div class="row content-container">
+    <app-toolbar></app-toolbar>
+    <div ui-view="content"  class="col-md-12 main-container">
+      <div class="row">
+        <div [className]="expandSidbar? 'col-md-4 col-lg-3 nopadding' : 'col-md-2 col-lg-2 nopadding'" id="sidebar">
+          <app-doc-list></app-doc-list>
+        </div>
+        <div [className]="expandSidbar? 'col-md-7 col-lg-8' : 'col-md-9 col-lg-9'">
+          <app-pdf-display></app-pdf-display>
+        </div>
+        <div  id="rightside-toolbar" [className]="expandSidbar? 'col-md-1 col-lg-9' : 'col-md-1 col-lg-1'">
+          <ul >
+            <li class="clear-parent" (click)="modalDisplay = 'flex'" title="Clear">  
+                  <img src="imaging/assets/icons/clear.svg" class="rightside-toolbar-icon">
+              <span class="icon-text">Clear</span>
+            </li>
+
+            <li (click)="print()">  
+                <img src="imaging/assets/icons/print.svg" class="rightside-toolbar-icon">
+          <span class="icon-text">Print</span>
+            </li>
+            <li>   
+                <img src="imaging/assets/icons/save.svg" class="rightside-toolbar-icon">
+              <span class="icon-text">Save</span>
+            </li>
+   
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>  
+  <app-footer></app-footer>
+</div>
+<div class="modal-backdrop" [ngStyle]="{'display': modalDisplay}"></div>
+<div class="modal vertical-center" tabindex="-1" role="dialog"  [ngStyle]="{'display': modalDisplay}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" aria-label="Close" (click)="modalCancel()"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Are you sure you want to clear annotations added/edited since last save?</h4>        
+      </div>
+      <div class="modal-footer">
+        <div class="row ng-scope text-center">
+            <button class="btn btn-success" type="button" (click)="modalOk()">OK</button>
+            <button class="btn btn-default" type="button" (click)="modalCancel()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,157 @@
+#content-wrapper {
+  position: absolute;
+  bottom: 0;
+  overflow: auto;
+  outline: none;
+}
+
+#content-wrapper {
+  top: 2px;
+}
+
+/* #content-wrapper .intro {
+  width: 70%;
+  margin-top: 2em;
+  text-align: center;
+} */
+
+.actions {
+  margin-top: 75.7vh;
+  background: #333;
+  top: 0;
+  position: absolute;
+  padding: 5px 0;
+  left: 0px;
+  height: 4.5vh;
+}
+
+.actions .btn-success {
+  margin-left: 0.5em;
+}
+
+/* Sticky the spinner */
+ngx-spinner::ng-deep .black-overlay {
+  position: sticky;
+  top: 50%;
+  height: auto;
+}
+
+
+/*chatbox*/
+.chat-box {
+  z-index: 999;
+  top: 466px;
+  position: absolute;
+  right: -73px;
+  background: #000;
+  /* bottom: 100vh; */
+  color: #fff;
+  
+  border-radius: 2px;
+  /* top: 669px; */
+  /* left: 1490px; */
+  width: 367px;
+  /* height: 44px; */
+  background: #000000 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  opacity: 1;
+}
+.user-name-com {
+  width: 77%;
+  float: left;
+}
+.user-coment-count {
+  width: 20%;
+  float: left;
+}
+.user-name-opt {
+  width: 5%;
+  float: right;
+}
+.chat-head {
+  padding: 10px;
+  width:100%;
+  display: table;
+  background: #323639;
+  background: #383838 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+
+}
+.rec-mes {
+  float: right;
+  width: 100%;
+  text-align: right;
+}
+.sent-mes {
+  width: 100%;
+  display: table;
+}
+.rec-mes .mes{
+  float: right;
+}
+.mes {
+  position: relative;
+  width: 60%;
+  background: red;
+  margin-bottom: 10px;
+  background: #dadada;
+opacity: 1;
+backdrop-filter: blur(30px);
+-webkit-backdrop-filter: blur(30px);
+padding: 10px;
+color: #000;
+border-radius: 10px;
+}
+.chat-body {
+  height: 200px;
+  padding: 10px;
+  border-bottom: 1px solid #dadada;
+  background: #000;
+  overflow: scroll;
+}
+.chat-fot {
+  padding: 10px;
+  background: #323639;
+}
+input.type-mes {
+  background: transparent;
+  border: none;
+  width: 84%;
+}
+.com-icn
+{
+  margin-left: 10px;
+}
+img.rightside-toolbar-icon {
+  display: inline;
+  width: 16px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+.mes:before {
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid #fff;
+  position: absolute;
+  content: '';
+  left: -10px;
+}
+span.attacment-icn img {
+  margin-left: 5px;
+}
+.drop-file{
+  width: 14%;
+  margin-bottom: 5%;
+  opacity: 0.5;
+}
+.img-text{
+  text-align: center;
+  font: Bold 20px/24px Lato;
+}
+.img-text2{
+  font-size: 10px;
+  font-weight: 400;
+  word-spacing: 0.2em;
+}

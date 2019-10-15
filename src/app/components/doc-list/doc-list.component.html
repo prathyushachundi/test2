@@ -1,0 +1,181 @@
+{{ sample}}
+<div class="panel panel-default doc-list" id="doc-list">
+  <div class="panel-heading">
+    <div class="row" id="doc-type-container">
+      <div [className]="expandTable? 'col-md-10 toggle-expand search' : 'col-md-9 toggle-expand-compact search'">
+        <div class="input-group searchbox">
+              <img src="imaging/assets/icons/zoom_search.svg" class="ser-icon" > 
+              <!--<i class="fas fa-search fa-lg ser-icon" ></i-->
+          <input type="text" class="form-control search-text" placeholder="Search..." #searchBox >
+        </div>
+      </div>
+      <div [className]="expandTable? 'col-md-2 typetool' : 'col-md-3 typetool'">
+        <div class="col-md-12 type">
+            <input type="text" class="form-control search-text" placeholder="Type" #searchBox >
+          <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle typebox drop-btn" type="button" id="docType" 
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="docType">
+                <li *ngFor="let docType of docTypes">
+                  <a href="javascript://">{{ docType }}</a>
+                </li>
+              </ul>
+            </div>
+        </div>        
+      </div>
+    </div>
+  </div>
+  <div class="panel-body pdflistdata">
+    <ng-container *ngIf="spinnerInFileList">
+      <ngx-spinner
+        bdColor="rgba(51,51,51,0)" 
+        size="default" 
+        color="#555" 
+        type="ball-clip-rotate">
+      </ngx-spinner>
+    </ng-container>
+    <a href="javascript://" (click)="getFile(file)">
+              </a>
+
+    <table class="table table-hover table-condensed">
+      <thead>
+        <tr>
+          <th>File Name</th>
+          <th><a href="javascript://" title="Refresh" (click)="refreshFileList()"><i class="fas fa-sync"></i></a></th>
+          <th *ngIf="expandTable">Upload User</th>
+          <th *ngIf="expandTable">Upload Date</th>
+          <th *ngIf="expandTable">Type</th>
+        </tr>
+        <!-- <div class="col-md-1 refresh">
+          <ng-container *ngIf="!expandTable">
+              <i class="fas fa-caret-right toggle-expand-compact" (click)="toggleExpand($event.target)"></i>
+          </ng-container>
+        </div> -->
+      </thead>
+      <tbody>
+        <!-- <tr>
+          <td>
+              <a href="javascript://" (click)="getFile(file)" title="abcd">test.pdf</a>
+          </td>
+        </tr> -->
+        <tr *ngFor="let file of filteredFileList" [class]="sessionService.selectedFile === file? 'active' : ''">
+
+          <td>
+            <a href="javascript://" (click)="getFile(file)" title="{{ file.fileName }}">
+
+              {{ expandTable? (file.fileName | lengthRestrict: 20) : file.fileName}}</a>
+
+              <a href="javascript://" (click)="getFile(file)" title="{{ file.fileName }}">
+              </a>
+          </td>
+          <td *ngIf="expandTable"><span title="{{ file.uploadBy }}">{{ file.uploadBy | lengthRestrict: 15 }}</span></td>
+          <td *ngIf="expandTable">{{ file.uploadDate | date: 'MM-dd-yyy'}}</td>
+          <td *ngIf="expandTable">{{ file.type }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="panel panel-default page-list" id="page-list">
+  <div class="panel-body">
+    <ng-container>
+      <ngx-spinner
+        bdColor="rgba(51,51,51,0)" 
+        size="default"
+        color="#555" 
+        type="ball-clip-rotate">
+      </ngx-spinner>
+    </ng-container>
+    <div *ngIf="bulkDeleteMode" class="row page-bulk-actions">
+        <div class="btn-group-vertical" role="group" aria-label="Bulk actions">
+          <button type="button" class="btn btn-default" title="Delete selected" (click)="modalType = 'bulkDeletePage'; showModal();">
+            <i class="fas fa-trash-alt"></i></button>
+          <button type="button" class="btn btn-default" title="Clear selection" (click)="bulkAction('clear')">
+            <i class="fas fa-times-circle"></i></button>
+        </div>
+    </div>
+    <ul class="list-group">
+      <!-- List group --- {{thumbnails | json}} -->
+      <li *ngFor="let thumbnail of thumbnails">
+        <!-- {{thumbnail | json}} -->
+        <a
+          [ngClass]="{'selected': thumbnail.selected}"
+          class="thumbnail" 
+          (click)="thumbnailClick($event, thumbnail)">
+          <div class="row">
+            <div class="thumb-image">
+              <!-- <p>{{thumbnail}} - canvas element</p> -->
+              <img [src]="thumbnail.canvasElement" width="75px" height="100px" *ngIf="thumbnail.canvasElement !== null">
+              <img class="thumb-transparent" src="{{enviroment.appRoot}}/assets/images/pdf-icon.svg" width="75px" height="100px" *ngIf="thumbnail.canvasElement === null">
+            </div>
+          </div>
+          <div class="row">
+            <div class="thumb-page">
+              {{thumbnail.pageNum}}
+            </div>
+            <div class="page-actions">
+              <i class="fas fa-trash" title="Delete Page" ></i>
+            </div>
+          </div>
+        </a>
+      </li>
+      <!-- <li *ngFor="let thumbnail of []">
+        {{thumbnail | json}} -- json thumbnail....
+        <a href="javascript://" 
+          class="thumbnail {{thumbnail.selected? 'selected' : ''}}" 
+          (click)="thumbnailClick($event, thumbnail)">
+          <div class="row">
+            <div class="thumb-image">
+              <p>{{thumbnail}} - canvas element</p>
+              <img [src]="thumbnail.canvasElement" width="75px" height="100px" *ngIf="thumbnail.canvasElement !== null">
+              <img class="thumb-transparent" src="{{enviroment.appRoot}}/assets/images/pdf-icon.svg" width="75px" height="100px" *ngIf="thumbnail.canvasElement === null">
+            </div>
+          </div>
+          <div class="row">
+            <div class="thumb-page">
+              {{thumbnail.pageNum}}
+            </div>
+            <div class="page-actions">
+              <i class="fas fa-trash" title="Delete Page" 
+                *ngIf="!bulkDeleteMode && canDelete()"
+                (click)="modalType = 'deletePage'; showModal();"></i>
+            </div>
+          </div>
+        </a>
+      </li> -->
+    </ul>
+  </div>
+</div>
+
+<div class="modal-backdrop" [ngStyle]="{'display': modalDisplay}"></div>
+<div class="modal vertical-center" tabindex="-1" role="dialog" [ngStyle]="{'display': modalDisplay}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" aria-label="Close" (click)="modalCancel()"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">
+          <ng-container *ngIf="modalType === 'deletePage'">
+            Are you sure you want to delete the page?
+          </ng-container>
+          <ng-container *ngIf="modalType === 'bulkDeletePage'">
+              Are you sure you want to delete the selected pages?
+            </ng-container>
+          <ng-container *ngIf="modalType === 'confirmSwitch'">
+              There are unsaved changes. Discard and move to the selected PDF?
+          </ng-container>
+          <ng-container *ngIf="modalType === 'reloadFile'">
+              A newer version of the selected file is available. Load that file?
+          </ng-container>
+        </h4>
+      </div>
+      <div class="modal-footer">
+        <div class="row ng-scope text-center">
+          <button class="btn btn-success" type="button" (click)="modalOk()">OK</button>
+          <button class="btn btn-default" type="button" (click)="modalCancel()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

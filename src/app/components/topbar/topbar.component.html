@@ -1,0 +1,72 @@
+<div class="row topbar" id="topbar">
+    <div class="row topbar" id="topbar">
+    <div class="col-md-2">
+        <span>
+           <a class="navbar-brand" href="#"><img class="conseqta_title" src="{{enviroment.appRoot}}/assets/images/brand/conseqta-gradient-white@2x.png"></a>
+        </span>
+    </div>
+    <div class="col-md-11">
+        <div class="doc-info" *ngIf="voucherInfo">
+            <div class="col-md-2 voucher card">
+                <div class="row">
+                    <div class="col-md-4 card-icon">
+                        <i class="fas fa-money-check-alt"></i>
+                    </div>
+                    <div class="col-md-8 card-details">
+                        <p id="voucherNo">{{voucherInfo.voucherNos.join(', ')}}</p>
+                        <p>${{voucherInfo.voucherAmount}}</p>
+                        <p title="Created on {{voucherInfo.createDate}}">
+                            <i class="fas fa-calendar-alt"></i> {{voucherInfo.createDate | date}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 office card">
+                <div class="row">
+                    <div class="col-md-3 card-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="col-md-9 card-details">
+                        <p>{{voucherInfo.officeTitle}}</p>
+                        <p>{{voucherInfo.fundTitle}} ({{voucherInfo.fundCode}})</p>
+                        <p>{{voucherInfo.voucherOfficeInfo.officeCode.officeCd}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 address card">
+                <div class="row">
+                    <div class="col-md-3 card-icon">
+                        <i class="fas fa-address-card"></i>
+                    </div>
+                    <div class="col-md-9 card-details">
+                        <address>
+                            <p>{{voucherInfo.voucherCreatorDisplayName}}</p>
+                            <span *ngIf="voucherInfo.voucherOfficeInfo.addressInfo">
+                              <p>{{voucherInfo.voucherOfficeInfo.addressInfo.line1StreetAddr}}</p>
+                              <!-- <p>{{voucherInfo.voucherOfficeInfo.addressInfo.line2StreetAddr}}</p> -->
+                              <p>{{voucherInfo.voucherOfficeInfo.addressInfo.line3StreetAddr}}</p>
+                              <p>{{voucherInfo.voucherOfficeInfo.addressInfo.prefCityName}}, {{voucherInfo.voucherOfficeInfo.addressInfo.stateAbbrev}},
+                                  {{voucherInfo.voucherOfficeInfo.addressInfo.zipCodeCd}}
+                              </p>
+                              <p><i class="fas fa-phone"></i> {{voucherInfo.voucherOfficeInfo.addressInfo.phoneNbr}}</p>
+                            </span>
+                        </address>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 user-profile card">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div *ngIf="thumbnail" class="profile-img-circle profile-img img-circle">
+                            <img class="" [src]="thumbnail" alt="User image">
+                        </div>
+                        <img *ngIf="!thumbnail" class=" img-fluid profile-img" src="{{enviroment.appRoot}}/assets/images/user-icon.png" alt="User image">
+                    </div>
+                    <div class="col-md-9 card-details">
+                        <p>{{account.displayName}}</p>
+                        <!--<p><i class="fas fa-sign-out-alt"></i>&nbsp;<a href="javascript://" (click)="logout()">Logout</a></p>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

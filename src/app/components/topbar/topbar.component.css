@@ -1,0 +1,94 @@
+.topbar, .card a {
+  color: #ddd;
+  background-color: #000;
+  padding:2px;
+}
+
+.conseqta_title{
+  width:70%;
+  margin-top:-3%;
+}
+
+.logo {
+  margin: 10px 0;
+}
+
+#voucherNo {
+  line-height: 1em;
+}
+
+div.doc-info {
+  margin-top: 0.3em;
+  width: 100%;
+  margin-left: 7%;
+}
+
+.card a:hover {
+  color: #eee;
+}
+
+.card-icon {
+  /* color: #3fbf3f; */
+  font-size: 50px;
+}
+
+.card-details {
+  margin-top: 1em;
+  left: -15px;
+}
+
+.card-details p {
+  font-size: 13px;
+  line-height: 0.8em;
+}
+
+.office .card-details, .user-profile .card-details {
+  left: -30px;
+}
+
+.address {
+  margin-bottom: 0;
+}
+
+.profile-img {
+  margin-top: 0.8em;
+  width:60px;
+  height:60px;
+  overflow:hidden
+}
+
+.profile-img img {
+  position: relative;
+  top: -5px;
+}
+
+.user-profile label {
+  font-weight: bold;
+}
+
+.fa-sign-out-alt {
+  color: #3fbf3f;
+}
+
+@media(max-width: 1700px) {
+  .card-icon {
+    font-size: 40px;
+  }
+
+  .card-details {
+    left: 0;
+  }
+
+  .card-details p {
+    font-size: 12px;
+    line-height: 1.1em;
+  }
+
+  .office .card-details {
+    left: -20px;
+  }
+
+  .user-profile .card-details {
+    left: 0;
+  }
+}

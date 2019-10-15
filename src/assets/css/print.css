@@ -1,0 +1,23 @@
+@media print
+{
+    #sidebar, #topbar, #toolbar, .actions {
+        display: none;
+    }
+
+    #content-wrapper {
+        position: relative !important;
+        left: 0 !important;
+        height: auto !important;
+        width: 100% !important;
+        overflow: unset !important;
+    }
+
+    .page {
+        height: auto !important;
+        width: 100% !important;        
+    }
+
+    svg.no-print {
+        display: none;
+    }
+}

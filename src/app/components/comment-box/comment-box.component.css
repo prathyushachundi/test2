@@ -1,0 +1,50 @@
+.comment-box {
+  position: fixed;
+  right: 30px;
+  bottom: 0;
+  margin-bottom: 3px;
+  min-width: 200px;
+  max-width: 400px;
+  z-index: 10;
+}
+
+.comment-box-wide {
+  min-width: 250px;
+}
+
+.comment-box .panel-heading {
+  cursor: pointer;
+}
+
+.comment-box h3 {
+  font-size: 14px;
+  margin: 0;
+}
+
+.comment-box .user-id {
+  margin: 0 0.2em;
+  text-transform: uppercase;
+}
+
+.comment-list li {
+  margin-bottom: 0.5em;
+}
+
+.comment-list .date {
+  font-size: 80%;
+  color: #444;
+}
+
+button.add-comment {
+  margin-top: 1em;
+}
+
+div.panel-green {
+  border: none;
+  box-shadow: 0 1px 6px 0 rgba(0,0,0,.2), 0 1px 6px 0 rgba(0,0,0,.19);
+}
+
+div.panel-green .panel-heading {
+  background: #3fbf3f;
+  color: #333;
+}

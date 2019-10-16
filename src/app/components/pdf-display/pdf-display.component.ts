@@ -631,9 +631,9 @@ export class PdfDisplayComponent implements OnInit, OnDestroy {
         break;
       case 'rotate-ccw':
         if(this.selectedPage) {
-          this.renderSelectedDocument(this.selectedPage, -90);
+          this.renderSelectedDocument(this.selectedPage, toolbarEvent.eventData.scale);
         } else {
-          this.RENDER_OPTIONS.rotate = this.getNewRotation(this.RENDER_OPTIONS.rotate, -90);
+          this.RENDER_OPTIONS.rotate = this.getNewRotation(this.RENDER_OPTIONS.rotate, toolbarEvent.eventData.scale);
           this.renderDocument();
         }
         break;

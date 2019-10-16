@@ -28,6 +28,8 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
 
   @ViewChild('textSizeId')
   textSizeElement: ElementRef;
+  @ViewChild('textSizeId1')
+  textSizeElement1: ElementRef;
 
   @ViewChild('penColorId')
   penColorElement: ElementRef;
@@ -122,6 +124,9 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
         break;
       case 'scale':
         eventData = { scale: this.scaleElement.nativeElement.value/100 };
+        break;
+        case 'rotate-ccw':
+        eventData = { scale: this.textSizeElement1.nativeElement.value };
         break;
     }
 

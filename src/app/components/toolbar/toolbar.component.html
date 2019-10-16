@@ -25,7 +25,7 @@
 
             
 
-            <li class="rectangle-parent">
+            <li class="rectangle-parent select-tool">
                 <button class="btn btn-default toolbar-btn navbar-btn rectangle" type="button" title="Cursor" data-tooltype="cursor" 
                 (click)="sendEvent('cursor')" [class.active]="eventType == 'cursor'" >
                 <li *ngIf="eventType == 'cursor';then selected else nonselected"></li>
@@ -36,7 +36,7 @@
                 </button>
                 
             </li>
-            <li class="rectangle-parent">
+            <li class="rectangle-parent rectangle-tool">
                 <button class="btn btn-default toolbar-btn navbar-btn rectangle" type="button" title="Rectangle" data-tooltype="area"
                     (click)="sendEvent('area')" [class.active]="eventType == 'area'">
                     <li *ngIf="eventType == 'area';then rect else nonrect"></li>
@@ -47,7 +47,7 @@
                 </button>
             </li>
 
-            <li class="rectangle-parent ">
+            <li class="rectangle-parent circle-tool ">
                     <button class="btn btn-default toolbar-btn navbar-btn rectangle" type="button" title="Circle" data-tooltype="emptycircle"
                     (click)="sendEvent('emptycircle')" [class.active]="eventType == 'emptycircle'">
                     <li *ngIf="eventType == 'emptycircle';then circle else noncircle"></li>
@@ -58,7 +58,7 @@
                     </button>
             </li>
 
-            <li class="rectangle-parent strikeout">
+            <li class="rectangle-parent strikeout strikeout-tool">
                     <button class="btn btn-default toolbar-btn navbar-btn rectangle" type="button" title="Strikeout" data-tooltype="strikeout"
                     (click)="sendEvent('strikeout')" [class.active]="eventType == 'strikeout'">
                     <li *ngIf="eventType == 'strikeout';then strikethrough else nonstrikethrough"></li>
@@ -70,7 +70,7 @@
 
            
                 
-                <li class="rectangle-parent pen-tool">
+                <li class="rectangle-parent pen-tool high-tool">
                         <button class="btn btn-default toolbar-btn navbar-btn rectangle" type="button" title="Highlight" data-tooltype="highlight"
                         (click)="sendEvent('highlight')" [class.active]="eventType == 'highlight'">
                         <li *ngIf="eventType == 'highlight';then highlight else nonhighlight"></li>
@@ -82,7 +82,7 @@
                             <span class="icon-text">Highlight</span>
                         
                     </li>
-                    <li class="rectangle-parent zoom-sty with-size-box">
+                    <li class="rectangle-parent zoom-sty with-size-box rotate-tool">
                             <button class="btn btn-default toolbar-btn navbar-btn rectangle" type="button" title="Text Tool" data-tooltype="text"
                             (click)="sendEvent('rotate-ccw')" [class.active]="eventType == 'rotate-ccw'">
                             <li *ngIf="eventType == 'rotate-ccw';then rotateccw else nonrotateccw"></li>
@@ -105,7 +105,7 @@
                                       </div>
                                 
                         </li>
-                    <li class="rectangle-parent pen-tool with-size-box">
+                    <li class="rectangle-parent pen-tool with-size-box text-tool">
                             <button class="btn btn-default toolbar-btn navbar-btn rectangle" type="button" title="Text Tool" data-tooltype="text"
                             (click)="sendEvent('text')" [class.active]="eventType == 'text'">
                             <li *ngIf="eventType == 'text';then text else nontext"></li>
@@ -129,7 +129,7 @@
                                         <option *ngFor="let textSize of textSizes" [value]="textSize">{{textSize}}</option>
                                 </select>-->
                         </li>
-                        <li class="rectangle-parent pen-tool with-size-box">
+                        <li class="rectangle-parent pen-tool with-size-box pen-tool">
                                 <button class="btn btn-default toolbar-btn navbar-btn rectangle" ype="button" title="Pen Tool" data-tooltype="draw"
                                 (click)="sendEvent('draw')" [class.active]="eventType == 'draw'">
                                 <li *ngIf="eventType == 'draw';then draw else nondraw"></li>
@@ -153,7 +153,7 @@
                                             <option *ngFor="let penSize of penSizes" [value]="penSize">{{penSize}}</option>
                                         </select>-->
                             </li>
-                            <li class="rectangle-parent pen-tool with-size-box">
+                            <li class="rectangle-parent pen-tool with-size-box arrow-tool">
                                     <button class="btn btn-default toolbar-btn navbar-btn rectangle"  type="button" title="Arrow Tool" data-tooltype="arrow"
                                                         (click)="sendEvent('arrow')" [class.active]="eventType == 'arrow'">
                                     <li *ngIf="eventType == 'arrow';then arrow else nonarrow"></li>
@@ -177,7 +177,7 @@
                                                                     <option *ngFor="let arrowSize of arrowSizes" [value]="arrowSize">{{arrowSize}}</option>
                                         </select>-->
                                 </li>
-                                <li class="rectangle-parent pen-tool with-size-box">
+                                <li class="rectangle-parent pen-tool with-size-box zoom-tool">
                                         <button class="btn btn-default toolbar-btn navbar-btn rectangle" type="button" title="Text Tool" data-tooltype="text"
                                         (click)="zoom('out')">
                                         <li *ngIf="eventType == 'out';then out else nonout"></li>

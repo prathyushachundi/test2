@@ -488,3 +488,40 @@ li.text-size-parent.box-contorol[_ngcontent-c3] {
 ul.nav.navbar-nav.tool-bar-list {
   width: 78%;
 }
+.select-tool img {
+  height: 24px !important;
+  width: 19px !important;
+}
+.rectangle-tool img {
+  height: 20px !important;
+  width: 21px !important;
+}
+.circle-tool img {
+  height: 22px !important;
+  width: 22px !important;
+}
+
+.high-tool img {
+  height: 14px !important;
+  width: 14px !important;
+}
+.rotate-tool img {
+  height: 17px !important;
+  width: 16px !important;
+}
+.text-tool img {
+  height: 41px !important;
+  width: 24px !important;
+}
+.pen-tool img {
+  height: 10px !important;
+  width: 11px !important;
+}
+.arrow-tool img {
+  height: 13px !important;
+  width: 15px !important;
+}
+.zoom-tool img {
+  height: 15px !important;
+  width: 15px !important;
+}

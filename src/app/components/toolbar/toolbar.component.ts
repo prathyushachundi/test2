@@ -31,13 +31,15 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
 
   @ViewChild('penColorId')
   penColorElement: ElementRef;
-
+  @ViewChild('highColorId')
+  highlightColorElement: ElementRef;
+  
   @ViewChild('penSizeId')
   penSizeElement: ElementRef;
 
   @ViewChild('arrowColorId')
   arrowColorElement: ElementRef;
-
+ 
   @ViewChild('arrowSizeId')
   arrowSizeElement: ElementRef;
 
@@ -47,15 +49,7 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
   chosenTextColor: string;
   chosenPenColor: string;
   chosenArrowColor: string;
-  selecttool:any;
-  circletool:any;
-  striketool:any;
-  highlighttool:any;
-  rotattool:any;
-  texttool:any;
-  pentool:any;
-  zoomtool:any;
-  arrowtool:any;
+ 
 
   constructor(
     private eventService: EventService,
@@ -86,6 +80,14 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
         this.sendEvent('draw');
       }
     });
+    initColorPicker(this.highlightColorElement.nativeElement, '#000000', (newColor: string) => {
+      this.chosenPenColor = newColor;
+
+      // If the pen annotator is currently selected, send an event to update the color
+      if (this.eventType === 'highlight') {
+        this.sendEvent('highlight');
+      }
+    });
 
     initColorPicker(this.arrowColorElement.nativeElement, '#000000', (newColor: string) => {
       this.chosenArrowColor = newColor;
@@ -105,47 +107,8 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
 
   sendEvent(eventType) {
   this.eventType=eventType;
-    //this.selecttool=null;
-    this.circletool=null;
-    this.highlighttool=null;
-    this.striketool=null;
-  var activevnt:any=document.querySelector(".active img");
-  var path=activevnt.src.substring(activevnt.src.lastIndexOf('/')+1).split(".svg");
-  document.querySelector(".active img").getAttribute("src")=="";
-
-  var file
     let eventData = null;
-    if (eventType=="cursor")
-    {
-      this.selecttool="imaging/assets/icons/circle-select.svg";
-    }
-    else if (eventType=="emptycircle")
-    {
-      this.selecttool="imaging/assets/icons/circle-select.svg";
-    }
-    else if (eventType=="area")
-    {
-      this.selecttool="imaging/assets/icons/circle-select.svg";
-    }else if (eventType=="strikeout")
-    {
-      this.striketool="imaging/assets/icons/strikethrough-selected.svg";
-    }else if (eventType=="highlight")
-    {
-      this.selecttool="imaging/assets/icons/circle-select.svg";
-    }else if (eventType=="text")
-    {
-      this.selecttool="imaging/assets/icons/circle-select.svg";
-    }else if (eventType=="draw")
-    {
-      this.selecttool="imaging/assets/icons/circle-select.svg";
-    }else if (eventType=="arrow")
-    {
-      this.selecttool="imaging/assets/icons/circle-select.svg";
-    }else if (eventType=="emptycircle")
-    {
-      this.selecttool="imaging/assets/icons/circle-select.svg";
-    }
-    //this.selecttool=true;
+    
 
     switch (this.eventType) {
       case 'draw':
@@ -158,7 +121,7 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
         eventData = { size: this.arrowSizeElement.nativeElement.value, color: this.chosenArrowColor };
         break;
       case 'scale':
-        eventData = { scale: this.scaleElement.nativeElement.value };
+        eventData = { scale: this.scaleElement.nativeElement.value/100 };
         break;
     }
 

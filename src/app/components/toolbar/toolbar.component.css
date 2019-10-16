@@ -359,7 +359,7 @@ span.app-name {
 }
 span.icon-text {
   display: block;
-  color: #fff !important;
+  color: #D3D3D3 !important;
   font-size: 9px !important;
   padding-top: 8px;
   position: unset !important;
@@ -410,4 +410,81 @@ li.text-size-parent.box-contorol {
 }
 object.toolbar-icon-images {
   height: 18px;
+}
+span.icon-text.strike-text {
+  margin-top: 3px;
+}
+
+@import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+
+.spinner input {
+  text-align: right;
+}
+
+.input-group-btn-vertical {
+  position: relative;
+  white-space: nowrap;
+  width: 2%;
+  vertical-align: middle;
+  display: table-cell;
+}
+
+.input-group-btn-vertical > .btn {
+  display: block;
+  float: none;
+  width: 100%;
+  max-width: 100%;
+  padding: 8px;
+  margin-left: -1px;
+  position: relative;
+  border-radius: 0;
+}
+
+.input-group-btn-vertical > .btn:first-child {
+  border-top-right-radius: 4px;
+}
+
+.input-group-btn-vertical > .btn:last-child {
+  margin-top: -2px;
+  border-bottom-right-radius: 4px;
+}
+
+.input-group-btn-vertical i {
+  position: absolute;
+  top: 0;
+  left: 4px;
+}
+.input-group-btn-vertical i {
+  color: #dadada !important;
+}
+li.text-size-parent.box-contorol input {
+  background: transparent;
+  border: none;
+  color: #fff;
+}
+.input-group.spinner {
+  border: 1px solid #6F7375;
+  border-radius: 3px;
+  
+  /* border: 1px solid #dadada; */
+}
+li.text-size-parent.box-contorol[_ngcontent-c3] input[_ngcontent-c3] {
+  background: transparent;
+  border: none;
+  color: #fff;
+  padding: 0px 5px;
+    text-align: left;
+    height: 30px;
+    border-right: 1px solid #6F7375;
+}
+.btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn.active.focus {
+  outline: unset !important
+}
+li.text-size-parent.box-contorol[_ngcontent-c3] {
+  width: 6% !important;
+  margin-top: 13px;
+  margin-left: -13px !important;
+}
+ul.nav.navbar-nav.tool-bar-list {
+  width: 78%;
 }

@@ -36,11 +36,24 @@
                 </button>
                 
             </li>
+            <li class="rectangle-parent">
+                <button class="btn btn-default toolbar-btn navbar-btn rectangle" type="button" title="Rectangle" data-tooltype="area"
+                    (click)="sendEvent('area')" [class.active]="eventType == 'area'">
+                    <li *ngIf="eventType == 'area';then rect else nonrect"></li>
+                <ng-template #nonrect><img  src="imaging/assets/icons/square.svg" class="toolbar-icon-images"></ng-template>
+                <ng-template #rect><img  src="imaging/assets/icons/square-selected.svg" class="toolbar-icon-images"></ng-template>
+    
+                    <span class="icon-text">Rectangle</span>
+                </button>
+            </li>
 
             <li class="rectangle-parent ">
                     <button class="btn btn-default toolbar-btn navbar-btn rectangle" type="button" title="Circle" data-tooltype="emptycircle"
                     (click)="sendEvent('emptycircle')" [class.active]="eventType == 'emptycircle'">
-                        <img src="imaging/assets/icons/circle.svg" class="toolbar-icon-images">
+                    <li *ngIf="eventType == 'emptycircle';then circle else noncircle"></li>
+                <ng-template #noncircle><img  src="imaging/assets/icons/circle.svg" class="toolbar-icon-images"></ng-template>
+                <ng-template #circle><img  src="imaging/assets/icons/circle-selected.svg" class="toolbar-icon-images"></ng-template>
+                    
                         <span class="icon-text">Circle</span>
                     </button>
             </li>
@@ -48,32 +61,34 @@
             <li class="rectangle-parent strikeout">
                     <button class="btn btn-default toolbar-btn navbar-btn rectangle" type="button" title="Strikeout" data-tooltype="strikeout"
                     (click)="sendEvent('strikeout')" [class.active]="eventType == 'strikeout'">
-                        <img [src]="striketool ? striketool:'imaging/assets/icons/strikethrough.svg'" class="toolbar-icon-images">
-                        <span class="icon-text">Strikeout</span>
+                    <li *ngIf="eventType == 'strikeout';then strikethrough else nonstrikethrough"></li>
+                <ng-template #nonstrikethrough><img  src="imaging/assets/icons/strikethrough.svg" class="toolbar-icon-images"></ng-template>
+                <ng-template #strikethrough><img  src="imaging/assets/icons/strikethrough-selected.svg" class="toolbar-icon-images"></ng-template>
+                        <span class="icon-text strike-text">Strikeout</span>
                     </button>
                 </li>
 
-            <li class="rectangle-parent">
-                    <button class="btn btn-default toolbar-btn navbar-btn rectangle" type="button" title="Rectangle" data-tooltype="area"
-                        (click)="sendEvent('area')" [class.active]="eventType == 'area'">
-                        <img src="imaging/assets/icons/square.svg" class="toolbar-icon-images">
-                        <span class="icon-text">Rectangle</span>
-                    </button>
-                </li>
+           
                 
                 <li class="rectangle-parent pen-tool">
                         <button class="btn btn-default toolbar-btn navbar-btn rectangle" type="button" title="Highlight" data-tooltype="highlight"
                         (click)="sendEvent('highlight')" [class.active]="eventType == 'highlight'">
-                            <img src="imaging/assets/icons/highlight.svg" class="toolbar-icon-images">
+                        <li *ngIf="eventType == 'highlight';then highlight else nonhighlight"></li>
+                <ng-template #nonhighlight><img  src="imaging/assets/icons/highlight.svg" class="toolbar-icon-images"></ng-template>
+                <ng-template #highlight><img  src="imaging/assets/icons/highlight-selected.svg" class="toolbar-icon-images"></ng-template>
+                           
                         </button>
-                        <div #penColorId class="colorcode"></div>
+                        <div #highColorId class="colorcode"></div>
                             <span class="icon-text">Highlight</span>
                         
                     </li>
                     <li class="rectangle-parent zoom-sty with-size-box">
                             <button class="btn btn-default toolbar-btn navbar-btn rectangle" type="button" title="Text Tool" data-tooltype="text"
-                            (click)="sendEvent('text')" [class.active]="eventType == 'text'">
-                                <img src="imaging/assets/icons/Rotate.svg" class="toolbar-icon-images">
+                            (click)="sendEvent('rotate-ccw')" [class.active]="eventType == 'rotate-ccw'">
+                            <li *ngIf="eventType == 'rotate-ccw';then rotateccw else nonrotateccw"></li>
+                            <ng-template #nonrotateccw><img  src="imaging/assets/icons/Rotate.svg" class="toolbar-icon-images"></ng-template>
+                            <ng-template #rotateccw><img  src="imaging/assets/icons/Rotate-selected.svg" class="toolbar-icon-images"></ng-template>
+                                
                                 <span class="icon-text text-text">Rotate</span>
                             </button>
                             
@@ -81,63 +96,108 @@
                             
                         </li>
                         <li class="text-size-parent box-contorol">
-                                <select #textSizeId class="text-size form-control navbar-btn" (change)="updateTextSize()">
-                                        <option *ngFor="let textSize of textSizes" [value]="textSize">{{textSize}}</option>
-                                </select>
+                                <div class="input-group spinner">
+                                        <input  #textSizeId1 type="text" class="form-control" value="1" min="0" >
+                                        <div class="input-group-btn-vertical">
+                                          <button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+                                          <button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+                                        </div>
+                                      </div>
+                                
                         </li>
                     <li class="rectangle-parent pen-tool with-size-box">
                             <button class="btn btn-default toolbar-btn navbar-btn rectangle" type="button" title="Text Tool" data-tooltype="text"
                             (click)="sendEvent('text')" [class.active]="eventType == 'text'">
-                                <img src="imaging/assets/icons/text.svg" class="toolbar-icon-images">
+                            <li *ngIf="eventType == 'text';then text else nontext"></li>
+                            <ng-template #nontext><img  src="imaging/assets/icons/text.svg" class="toolbar-icon-images"></ng-template>
+                            <ng-template #text><img  src="imaging/assets/icons/text-selected.svg" class="toolbar-icon-images"></ng-template>
+                               
                             </button>
                             <div #textColorId class="colorcode"></div>
                                 <span class="icon-text text-text">Text</span>
                             
                         </li>
                         <li class="text-size-parent box-contorol">
-                                <select #textSizeId class="text-size form-control navbar-btn" (change)="updateTextSize()">
+                                <div class="input-group spinner">
+                                        <input  #textSizeId type="text" class="form-control" value="1" min="0" (change)="updateTextSize()" >
+                                        <div class="input-group-btn-vertical">
+                                          <button class="btn btn-default" (click)="updateTextSize()" type="button"><i class="fa fa-caret-up"></i></button>
+                                          <button class="btn btn-default"  (click)="updateTextSize()" type="button"><i class="fa fa-caret-down"></i></button>
+                                        </div>
+                                      </div>
+                                <!--<select #textSizeId class="text-size form-control navbar-btn" (change)="updateTextSize()">
                                         <option *ngFor="let textSize of textSizes" [value]="textSize">{{textSize}}</option>
-                                </select>
+                                </select>-->
                         </li>
                         <li class="rectangle-parent pen-tool with-size-box">
                                 <button class="btn btn-default toolbar-btn navbar-btn rectangle" ype="button" title="Pen Tool" data-tooltype="draw"
                                 (click)="sendEvent('draw')" [class.active]="eventType == 'draw'">
-                                    <img src="imaging/assets/icons/pen.svg" class="toolbar-icon-images">
+                                <li *ngIf="eventType == 'draw';then draw else nondraw"></li>
+                            <ng-template #nondraw><img  src="imaging/assets/icons/pen.svg" class="toolbar-icon-images"></ng-template>
+                            <ng-template #draw><img  src="imaging/assets/icons/pen-selected.svg" class="toolbar-icon-images"></ng-template>
+                                   
                                 </button>
-                                <div #textColorId class="colorcode"></div>
+                                <div #penColorId class="colorcode"></div>
                                     <span class="icon-text text-text">Pen</span>
                                 
                             </li>
                             <li class="text-size-parent box-contorol">
-                                    <select #penSizeId class="pen-size form-control navbar-btn" (change)="updatePenSize()" [(ngModel)]="selectedPenSize">
+                                    <div class="input-group spinner">
+                                            <input  #penSizeId type="text" class="form-control" value="1" min="0" (change)="updateTextSize()" >
+                                            <div class="input-group-btn-vertical">
+                                              <button class="btn btn-default" (click)="updateTextSize()" type="button"><i class="fa fa-caret-up"></i></button>
+                                              <button class="btn btn-default"  (click)="updateTextSize()" type="button"><i class="fa fa-caret-down"></i></button>
+                                            </div>
+                                          </div>
+                                    <!--<select #penSizeId class="pen-size form-control navbar-btn" (change)="updatePenSize()" [(ngModel)]="selectedPenSize">
                                             <option *ngFor="let penSize of penSizes" [value]="penSize">{{penSize}}</option>
-                                        </select>
+                                        </select>-->
                             </li>
                             <li class="rectangle-parent pen-tool with-size-box">
                                     <button class="btn btn-default toolbar-btn navbar-btn rectangle"  type="button" title="Arrow Tool" data-tooltype="arrow"
                                                         (click)="sendEvent('arrow')" [class.active]="eventType == 'arrow'">
-                                        <img src="imaging/assets/icons/leftarrow.svg" class="toolbar-icon-images">
+                                    <li *ngIf="eventType == 'arrow';then arrow else nonarrow"></li>
+                            <ng-template #nonarrow><img  src="imaging/assets/icons/leftarrow.svg" class="toolbar-icon-images"></ng-template>
+                            <ng-template #arrow><img  src="imaging/assets/icons/leftarrow-selected.svg" class="toolbar-icon-images"></ng-template>
+                                       
                                     </button>
                                     <div  #arrowColorId class="colorcode"></div>
                                         <span class="icon-text text-text">Arrow</span>
                                     
                                 </li>
                                 <li class="text-size-parent box-contorol arrow-size">
-                                          <select #arrowSizeId class="arrow-size form-control navbar-btn" (change)="updateArrowSize()">
+                                        <div class="input-group spinner">
+                                                <input  #arrowSizeId type="text" class="form-control" value="1" min="0" (change)="updateTextSize()" >
+                                                <div class="input-group-btn-vertical">
+                                                  <button class="btn btn-default" (click)="updateTextSize()" type="button"><i class="fa fa-caret-up"></i></button>
+                                                  <button class="btn btn-default"  (click)="updateTextSize()" type="button"><i class="fa fa-caret-down"></i></button>
+                                                </div>
+                                              </div>
+                                          <!--<select #arrowSizeId class="arrow-size form-control navbar-btn" (change)="updateArrowSize()">
                                                                     <option *ngFor="let arrowSize of arrowSizes" [value]="arrowSize">{{arrowSize}}</option>
-                                        </select>
+                                        </select>-->
                                 </li>
                                 <li class="rectangle-parent pen-tool with-size-box">
                                         <button class="btn btn-default toolbar-btn navbar-btn rectangle" type="button" title="Text Tool" data-tooltype="text"
                                         (click)="zoom('out')">
-                                            <img src="imaging/assets/icons/zoom_search.svg" class="toolbar-icon-images">
+                                        <li *ngIf="eventType == 'out';then out else nonout"></li>
+                                        <ng-template #nonout><img  src="imaging/assets/icons/zoom_search.svg" class="toolbar-icon-images"></ng-template>
+                                        <ng-template #out><img  src="imaging/assets/icons/zoom_search-selected.svg" class="toolbar-icon-images"></ng-template>
+                                            
                                         </button>
                                         <div #textColorId class="colorcode"></div>
                                             <span class="icon-text text-text">Zoom</span>
                                         
                                     </li>
                                     <li class="text-size-parent box-contorol  arrow-size">
-                                             <select #scaleId class="scale form-control navbar-btn" (change)="sendEvent('scale')">
+                                            <div class="input-group spinner">
+                                                    <input #scaleId  type="text" class="form-control" value="1" min="0" (change)="sendEvent('scale')" >
+                                                    <div class="input-group-btn-vertical">
+                                                      <button class="btn btn-default" (click)="sendEvent('scale')" type="button"><i class="fa fa-caret-up"></i></button>
+                                                      <button class="btn btn-default"  (click)="sendEvent('scale')" type="button"><i class="fa fa-caret-down"></i></button>
+                                                    </div>
+                                                  </div>
+                                            <!--  <select #scaleId class="scale form-control navbar-btn" (change)="sendEvent('scale')">
                                                                         <option value=".5">50%</option>
                                                                         <option value=".75">75%</option>
                                                                         <option value="1">100%</option>
@@ -145,7 +205,7 @@
                                                                         <option value="1.5">150%</option>
                                                                         <option value="1.75">175%</option>
                                                                         <option value="2">200%</option>
-                                                                    </select>
+                                                                    </select> -->
                                                     
                                     </li>
                 

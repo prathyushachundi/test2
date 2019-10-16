@@ -1933,7 +1933,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (a.type === 'highlight') {
 	    var group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
 	    (0, _setAttributes2.default)(group, {
-	      fill: (0, _normalizeColor2.default)(a.color || '#ff0'),
+	      fill: (0, _normalizeColor2.default)(a.color || '#000'),
 	      fillOpacity: 0.2
 	    });
 	

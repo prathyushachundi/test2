@@ -105,15 +105,16 @@ body {
   width: 20px;
 }
 .color-picker {
-  left: -41px;
-  width: 102px !important;
+  left: -30px;
+  width: 137px !important;
+  padding: 10px !important;
 }
 .color-picker:before {
   position: absolute;
   content: '';
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-bottom: 5px solid #fff;
-  top: -6px;
-  left: 44px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #fff;
+  top: -10px;
+  left: 59px;
 }

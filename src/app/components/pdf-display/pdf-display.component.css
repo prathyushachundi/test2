@@ -91,16 +91,17 @@ ngx-spinner::ng-deep .black-overlay {
 }
 .mes {
   position: relative;
+  text-align: left;
   width: 60%;
   background: red;
   margin-bottom: 10px;
-  background: #dadada;
-opacity: 1;
-backdrop-filter: blur(30px);
--webkit-backdrop-filter: blur(30px);
-padding: 10px;
-color: #000;
-border-radius: 10px;
+  background: #6b6b6b;
+  opacity: 1;
+  /* backdrop-filter: blur(30px); */
+  -webkit-backdrop-filter: blur(30px);
+  padding: 10px;
+  color: #fff;
+  border-radius: 10px;
 }
 .chat-body {
   height: 200px;
@@ -133,10 +134,10 @@ img.rightside-toolbar-icon {
   height: 0;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
-  border-right: 10px solid #fff;
+  border-right: 10px solid #6b6b6b;
   position: absolute;
   content: '';
-  left: -10px;
+  left: -9px;
 }
 span.attacment-icn img {
   margin-left: 5px;

@@ -630,10 +630,12 @@ export class PdfDisplayComponent implements OnInit, OnDestroy {
         }
         break;
       case 'rotate-ccw':
+      var rotatean =- toolbarEvent.eventData.scale
         if(this.selectedPage) {
-          this.renderSelectedDocument(this.selectedPage, toolbarEvent.eventData.scale);
+          
+          this.renderSelectedDocument(this.selectedPage, rotatean);
         } else {
-          this.RENDER_OPTIONS.rotate = this.getNewRotation(this.RENDER_OPTIONS.rotate, toolbarEvent.eventData.scale);
+          this.RENDER_OPTIONS.rotate = this.getNewRotation(this.RENDER_OPTIONS.rotate, rotatean);
           this.renderDocument();
         }
         break;
@@ -691,10 +693,11 @@ export class PdfDisplayComponent implements OnInit, OnDestroy {
   {
 
     let val:any=document.querySelector(".type-mes");
-   
+   if (val.value != ""){
     var comemse={"name":val.value}
     this.commentlist.push(comemse)
     val.value="";
+   }
     
          //alert(this.commentlist)
   }

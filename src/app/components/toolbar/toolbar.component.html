@@ -1,6 +1,7 @@
 <nav class="navbar navbar-default toolbar" id="toolbar">
     <div class="container-fluid">
-        <div class="navbar-header">
+        <div class="col-md-2 logo">
+        <div class="navbar-header ">
             <div class="row nopadding">
                 <a class="navbar-brand" href="javascript://">
                     <span class="app-name">Imaging</span>
@@ -14,7 +15,10 @@
                
             </div>
         </div>
-        <ul class="nav navbar-nav tool-bar-list">
+    </div>
+    <div class="col-md-9 toolbarlist">
+    <div class="toolbar-list-items">
+        <ul class="nav navbar-nav tool-bar-list col-md-9">
             <!--<li>
                 <button class="btn btn-default toolbar-btn navbar-btn cursor" type="button" title="Cursor" data-tooltype="cursor" 
                     (click)="sendEvent('cursor')" [class.active]="eventType == 'cursor'">
@@ -177,16 +181,16 @@
                                                                     <option *ngFor="let arrowSize of arrowSizes" [value]="arrowSize">{{arrowSize}}</option>
                                         </select>-->
                                 </li>
-                                <li class="rectangle-parent pen-tool with-size-box zoom-tool">
+                                <li class="rectangle-parent zoom-sty with-size-box rotate-tool zoom-tool">
                                         <button class="btn btn-default toolbar-btn navbar-btn rectangle" type="button" title="Text Tool" data-tooltype="text"
                                         (click)="zoom('out')">
                                         <li *ngIf="eventType == 'out';then out else nonout"></li>
                                         <ng-template #nonout><img  src="imaging/assets/icons/zoom_search.svg" class="toolbar-icon-images"></ng-template>
                                         <ng-template #out><img  src="imaging/assets/icons/zoom_search-selected.svg" class="toolbar-icon-images"></ng-template>
-                                            
+                                        <span class="icon-text text-text">Zoom</span>    
                                         </button>
-                                        <div #textColorId class="colorcode"></div>
-                                            <span class="icon-text text-text">Zoom</span>
+                                        
+                                          
                                         
                                     </li>
                                     <li class="text-size-parent box-contorol  arrow-size">
@@ -373,6 +377,8 @@
                 <span class="icon-text">Save</span>
             </li> -->
         </ul>
+    </div>
+    </div>
     </div>
 </nav>
 

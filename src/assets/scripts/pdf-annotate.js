@@ -2064,7 +2064,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	function renderCircle(a) {
 	  var circle = createCircle(a);
-	  var color = (0, _normalizeColor2.default)(a.color || '#f00');
+	  var color = (0, _normalizeColor2.default)(a.color || '#000');
 	
 	  if (a.type === 'circle') (0, _setAttributes2.default)(circle, {
 	    stroke: color,
@@ -3235,7 +3235,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  disableArrow: _arrow.disableArrow, enableArrow: _arrow.enableArrow, setArrow: _arrow.setArrow,
 	  disableText: _text.disableText, enableText: _text.enableText, setText: _text.setText,
 	  createPage: _page.createPage, renderPage: _page.renderPage, derenderPage: _page.derenderPage,
-	  closeInput:_text.closeInput
+		closeInput:_text.closeInput,
+		sethighlight:_rect.sethighlight
 	};
 	module.exports = exports['default'];
 
@@ -4191,6 +4192,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Enable point annotation behavior
 	 */
+	
 	function enablePoint() {
 	  if (_enabled) {
 	    return;
@@ -4223,6 +4225,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.enableRect = enableRect;
 	exports.disableRect = disableRect;
+	exports.sethighlight=sethighlight;
 	
 	var _PDFJSAnnotate = __webpack_require__(1);
 	
@@ -4245,6 +4248,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var overlay = void 0;
 	var originY = void 0;
 	var originX = void 0;
+	var _highlightcolor=void 0;
 	
 	/**
 	 * Get the current window selection as rects
@@ -4382,9 +4386,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	  if (!color) {
 	    if (type === 'highlight') {
-	      color = 'FFFF00';
+	      color = _highlightcolor;
 	    } else if (type === 'strikeout') {
-	      color = 'FF0000';
+				color = _highlightcolor;
 	    }
 	  }
 	
@@ -4440,6 +4444,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Enable rect behavior
 	 */
+	function sethighlight(color) {
+		if (color)
+		{
+			_highlightcolor=color;
+		}
+		else{
+			_highlightcolor='#000';
+		}
+	
+	 }
 	function enableRect(type) {
 	  _type = type;
 	
@@ -4684,6 +4698,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 	exports.setText = setText;
+	//exports.sethighlight=sethighlight;
 	exports.enableText = enableText;
 	exports.disableText = disableText;
 	exports.closeInput=closeInput;
@@ -4706,6 +4721,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var input = void 0;
 	var _textSize = void 0;
 	var _textColor = void 0;
+	var _highlightcolorv=void 0
 	var selectedAnnotationElem = void 0;
 	var selectedAnnotationParentElem = void 0;
 	
@@ -4894,6 +4910,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _textSize = parseInt(textSize, 10);
 	  _textColor = textColor;
 	}
+
 	
 	/**
 	 * Enable text behavior

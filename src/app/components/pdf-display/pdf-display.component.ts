@@ -599,6 +599,10 @@ export class PdfDisplayComponent implements OnInit, OnDestroy {
         UI.enableRect(toolbarEvent.eventType);
         break;
       case 'highlight':
+      UI.sethighlight(toolbarEvent.eventData.color);
+      this.putAnnotationLayerOnBottom();
+      UI.enableRect(toolbarEvent.eventType);
+      break;
       case 'strikeout':
         this.putAnnotationLayerOnBottom();
         UI.enableRect(toolbarEvent.eventType);

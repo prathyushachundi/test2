@@ -113,6 +113,8 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
     
 
     switch (this.eventType) {
+      case 'highlight':
+      eventData = {color: this.chosenPenColor };
       case 'draw':
         eventData = { size: this.penSizeElement.nativeElement.value, color: this.chosenPenColor };
         break;

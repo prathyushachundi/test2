@@ -361,7 +361,7 @@ span.icon-text {
   display: block;
   color: #D3D3D3 !important;
   font-size: 9px !important;
-  padding-top: 10px;
+  padding-top: 7px;
   position: unset !important;
 }
 li.rectangle-parent.strikeout img {
@@ -504,4 +504,7 @@ ul.nav.navbar-nav.tool-bar-list[_ngcontent-c3] {
 .toolbar-list-items {
   width: 84%;
   margin: auto;
+}
+.pen-tool img {
+  height: 10px !important;
 }

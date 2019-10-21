@@ -506,5 +506,6 @@ ul.nav.navbar-nav.tool-bar-list[_ngcontent-c3] {
   margin: auto;
 }
 .pen-tool img {
-  height: 10px !important;
+  height: 11px !important;
+  margin-top: -6px;
 }

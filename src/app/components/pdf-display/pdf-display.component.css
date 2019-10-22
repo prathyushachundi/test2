@@ -156,3 +156,8 @@ span.attacment-icn img {
   font-weight: 400;
   word-spacing: 0.2em;
 }
+#content-wrapper {
+  top: 2px;
+  margin: auto;
+  position: unset;
+}

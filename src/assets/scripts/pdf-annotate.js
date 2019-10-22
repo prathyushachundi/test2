@@ -4259,7 +4259,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  try {
 	    var selection = window.getSelection();
 	    var range = selection.getRangeAt(0);
-	    var rects = range.getClientRects();
+			var rects = range.getClientRects();
+			selection.empty();
 	
 	    if (rects.length > 0 && rects[0].width > 0 && rects[0].height > 0) {
 	      return rects;

@@ -18,6 +18,7 @@ export class EventService {
   private _messagesSubject = new Subject<Message[]>();
   private _expandSidebarSubject = new Subject<boolean>();
   private _annotationsLoaded = new Subject();
+  private _sendcollapseevent=new Subject();
 
   private messages: Message[] = [];
 
@@ -25,6 +26,9 @@ export class EventService {
 
   sendToolbarEvent(toolbarEvent: ToolbarEvent) {
     this._toolbarEventsSubject.next(toolbarEvent);
+  }
+  sendcollapseevent(collapse){
+   this._sendcollapseevent.next(collapse)
   }
 
   sendPageEvent(pageEvent: PageEvent) {
@@ -76,7 +80,10 @@ export class EventService {
   public get messagesSubject() {
     return this._messagesSubject;
   }
-
+  public get sendcollapseEvent()
+  {
+    return this._sendcollapseevent;
+  }
   public get expandSidebarSubject() {
     return this._expandSidebarSubject;
   }

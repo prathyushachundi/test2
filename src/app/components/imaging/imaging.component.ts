@@ -6,6 +6,7 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
 
 
 
+
 @Component({
   selector: 'app-imaging',
   templateUrl: './imaging.component.html',
@@ -15,6 +16,8 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
 export class ImagingComponent implements OnInit, OnDestroy, AfterViewInit {
   expandSidbar = false;
   expandSidebarSubscription: Subscription;
+  collapesub:Subscription
+  coolapseexpand:any;
   modalDisplay = 'none';
 
   constructor(private eventService: EventService, private resizeService: ResizeService,private toolbarcomponent:ToolbarComponent) {}
@@ -39,6 +42,10 @@ export class ImagingComponent implements OnInit, OnDestroy, AfterViewInit {
     this.expandSidebarSubscription = this.eventService.expandSidebarSubject.subscribe(
       isExpand => (this.expandSidbar = isExpand)
     );
+    
+    this.collapesub=this.eventService.sendcollapseEvent.subscribe(
+      collIsExpand => (this.coolapseexpand = collIsExpand)
+    )
   }
 
   ngOnDestroy() {

@@ -55,7 +55,7 @@ export class ResizeService {
     // Width available for the pdf viewer is the total width minus the width of the sidebar (i.e. either the width of docList or pageList)
     const availableWidth = this.currentSize.width - docListHeader.offsetWidth-70;
 
-    contentWrapper.style.width = (availableWidth - 25).toString() + 'px';
+    //contentWrapper.style.width = (availableWidth - 25).toString() + 'px';
 
     if (commentBox) {
       commentBox.style.bottom = (footer.offsetHeight) + 'px';

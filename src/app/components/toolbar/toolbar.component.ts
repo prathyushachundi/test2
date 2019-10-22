@@ -19,7 +19,7 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
   penSizes = [];
   arrowSizes = [1, 2, 3, 4, 5];
   modalDisplay = 'none';
-
+  sidebarvalue:boolean=true;
   @ViewChild('navbarHeader')
   navbarHeader: ElementRef;
 
@@ -106,7 +106,12 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
       this.scaleElement.nativeElement.value = '1.33';
     });
   }
+  sidebartoggl()
+  {
+    this.sidebarvalue =! this.sidebarvalue;
+    this.eventService.sendcollapseevent( this.sidebarvalue);
 
+  }
   sendEvent(eventType) {
   this.eventType=eventType;
     let eventData = null;

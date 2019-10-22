@@ -495,7 +495,7 @@ ul.nav.navbar-nav.tool-bar-list[_ngcontent-c3] {
   width: 100% !important;
 }
 .col-md-9.toolbarlist {
-  width: 80% !important;
+  width: 79% !important;
 }
 .toolbar-list-items {
   width: 83%;
@@ -508,4 +508,21 @@ ul.nav.navbar-nav.tool-bar-list[_ngcontent-c3] {
 .pen-tool img {
   height: 11px !important;
   margin-top: -6px;
+}
+.sidebar-toggle {
+  width: 4%;
+  float: right;
+  text-align: center;
+  display: table;
+}
+.sidebar-toggle img {
+  height: 9px;
+  margin-top: 12px;
+  /* float: right; */
+  /* margin: auto; */
+}
+.col-tit {
+  color: #fff;
+  font-size: 9px;
+  padding-top: 12px;
 }

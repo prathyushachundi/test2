@@ -1934,7 +1934,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
 	    (0, _setAttributes2.default)(group, {
 	      fill: (0, _normalizeColor2.default)(a.color || '#000'),
-	      fillOpacity: 0.2
+	      fillOpacity: 0.8
 	    });
 	
 	    a.rectangles.forEach(function (r) {

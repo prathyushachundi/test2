@@ -42,7 +42,7 @@ ngx-spinner::ng-deep .black-overlay {
   z-index: 999;
   top: 466px;
   position: absolute;
-  right: -73px;
+  right: 11px;
   background: #000;
   /* bottom: 100vh; */
   color: #fff;

@@ -7,10 +7,10 @@
         <div [className]="expandSidbar? 'col-md-4 col-lg-3 nopadding' : 'col-md-2 col-lg-2 nopadding'" id="sidebar">
           <app-doc-list></app-doc-list>
         </div>
-        <div [className]="coolapseexpand? 'col-md-9 col-lg-9' : 'col-md-10 col-lg-10'">
+        <div [className]="coolapseexpand ? 'col-md-9 col-lg-9 pdfdisplaybox' : 'col-md-10 col-lg-10 '">
           <app-pdf-display></app-pdf-display>
         </div>
-        <div *ngIf="coolapseexpand" id="rightside-toolbar" [className]="expandSidbar? 'col-md-1 col-lg-1' : 'col-md-1 col-lg-1'">
+        <div *ngIf="coolapseexpand" id="rightside-toolbar" [className]="expandSidbar? 'col-md-1 col-lg-1' : 'col-md-1 col-lg-1 sidedisplaybox'">
           <ul >
             <li class="clear-parent" (click)="modalDisplay = 'flex'" title="Clear">  
                   <img src="imaging/assets/icons/clear.svg" class="rightside-toolbar-icon">

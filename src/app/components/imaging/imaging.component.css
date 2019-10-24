@@ -4,7 +4,7 @@ div#rightside-toolbar {
     
 }
 div#rightside-toolbar ul {
-    width: 46%;
+    width: 100%;
     margin: 0px !important;
     display: table;
     padding: 0px;
@@ -41,4 +41,11 @@ img.rightside-toolbar-icon {
 }
 div#rightside-toolbar {
     margin-top: 7px;
+}
+div#rightside-toolbar {
+    width: 4%;
+    float: right;
+}
+.col-md-9.col-lg-9.pdfdisplaybox {
+    width: 79%;
 }

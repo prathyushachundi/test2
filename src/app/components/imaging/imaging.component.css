@@ -49,3 +49,6 @@ div#rightside-toolbar {
 .col-md-9.col-lg-9.pdfdisplaybox {
     width: 79%;
 }
+img.toolbar-icon-images.coolapse-icon {
+    cursor: pointer;
+  }

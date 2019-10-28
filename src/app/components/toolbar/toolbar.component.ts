@@ -19,7 +19,7 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
   penSizes = [];
   arrowSizes = [1, 2, 3, 4, 5];
   modalDisplay = 'none';
-  sidebarvalue:boolean=true;
+  sidebarvalue:boolean=false;
   @ViewChild('navbarHeader')
   navbarHeader: ElementRef;
 

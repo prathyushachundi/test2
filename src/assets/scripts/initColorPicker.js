@@ -1,4 +1,5 @@
 // Color picker component
+
 const COLORS = [
   {hex: '#000000', name: 'Black'},
   {hex: '#EF4437', name: 'Red'},
@@ -15,11 +16,12 @@ const COLORS = [
   {hex: '#FDC010', name: 'Yellow'},
   {hex: '#F8971C', name: 'Orange'},
   {hex: '#F0592B', name: 'Deep Orange'},
-  {hex: '#F06291', name: 'Light Pink'}
+  
 ];
 
 export default function initColorPicker(el, value, onChange) {
   function setColor(value, fireOnChange = true) {
+    
     currentValue = value;
     a.setAttribute('data-color', value);
     a.style.background = value;
@@ -45,10 +47,20 @@ export default function initColorPicker(el, value, onChange) {
     isPickerOpen = false;
     a.focus();
   }
+  function enablecustomcolor()
+   {
+    var x = document.querySelector(".custominput");
+    if (x.style.display === "none" || x.style.display === "") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+   }
 
   function openPicker() {
     if (!picker) {
       picker = document.createElement('div');
+      var picker1 = document.createElement('div');
       picker.className = 'color-picker'
       picker.style.background = '#fff';
       picker.style.border = '1px solid #ccc';
@@ -56,19 +68,55 @@ export default function initColorPicker(el, value, onChange) {
       picker.style.position = 'absolute';
       picker.style.width = '122px';
       el.style.position = 'relative';
+      var starandcolor=`<div class="stndardcolor">
+      <span>Standard Color</span>
+      <a class="color" href="javascript://" title="Black" data-color="#000000" style="background: rgb(0, 0, 0); margin: 2px 10px;"></a>
+      </div>
+      `
+      picker1.innerHTML=starandcolor;
+       picker1=picker1.firstChild;
+      picker.appendChild(picker1);
+      var picker2 = document.createElement('div');
+      var addcustomtcolor=`<div class="add-custompic"><span class="plus-icon">+</span><a href="javascript://" class="addcustombutton"> Addcustom Color</a>
+      <div class="custominput">
+      <input type="text" class="color-codei">
+      <button class="custoncoloradd">+</button>
+      </div>
+      </div>
+      ` 
+      picker2.innerHTML=addcustomtcolor;
+      picker2=picker2.firstChild
+      
+
+
+      
+      
 
       COLORS.map(createColorOption).forEach((c) => {
         c.style.margin = '2px';
         c.onclick = function () { setColor(c.getAttribute('data-color')); };
         picker.appendChild(c);
       });
-    }
-
+     
+      picker.appendChild(picker2);
+      
+     
+       }
+       
     document.addEventListener('keyup', handleDocumentKeyup);
     el.appendChild(picker);
+    document.querySelector(".addcustombutton").onclick = function () { enablecustomcolor(); };
+
+    document.querySelector(".custoncoloradd").onclick=function(){setcolorcode();}
     isPickerOpen = true;
   }
+  function setcolorcode(){
+    
+    var colorcode= document.querySelector(".color-codei").value;
+    setColor(colorcode)
 
+  }
+   
   function createColorOption(color) {
     let e = document.createElement('a');
     e.className = 'color';
@@ -78,7 +126,7 @@ export default function initColorPicker(el, value, onChange) {
     e.style.background = color.hex;
     return e;
   }
-
+  
   function handleDocumentKeyup(e) {
     if (e.keyCode === 27) {
       closePicker();
@@ -93,3 +141,4 @@ export default function initColorPicker(el, value, onChange) {
   el.appendChild(a);
   setColor(value, false);
 }
+
